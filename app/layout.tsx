@@ -1,6 +1,9 @@
 import  { type Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Home from "./page";
+import { Provider } from "./provider";
+import { currentUser } from "@clerk/nextjs/server";
 import {
   ClerkProvider,
   SignInButton,
@@ -47,7 +50,8 @@ export default function RootLayout({
               <UserButton />
             </SignedIn>
           </header>
-          {children}
+         <Provider>{children}</Provider>
+        
         </body>
       </html>
     </ClerkProvider>

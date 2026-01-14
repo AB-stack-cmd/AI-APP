@@ -6,24 +6,29 @@ import { eq } from "drizzle-orm";
 
 // req : request from data
 export async function POST(req: NextRequest) {
-    const user = await currentUser();
-    
-       console.log("CURRENT USER:", user);
+  const user = await currentUser();
 
-    const users = await db.select().from(usersTable).where(eq(usersTable.email,user?.primaryEmailAddress?.emailAddress as string))
-    const age = await req.json();
+  if (!user || !user.primaryEmailAddress) {
+    return NextResponse.json(
+      { error: "Unauthorized" },
+      { status: 401 }
+    );
+  }
 
-    if(!users){
-        const data = {
-            name : user?.fullName ?? '',
-            email : user?.primaryEmailAddress?.emailAddress as string,
-            age
-        }
-        //insert to usertable of data value 
-        const result = await db.insert(usersTable).values({...data}).returning()
-          
-    }
-    return NextResponse.json(users[0])
+  const email = user.primaryEmailAddress.emailAddress;
 
+  const users = await db
+    .select()
+    .from(usersTable)
+    .where(eq(usersTable.email, email));
+
+  if (users.length === 0) {
+    return NextResponse.json(
+      { error: "User not found" },
+      { status: 404 }
+    );
+  }
+
+  return NextResponse.json(users[0]);
 }
 
