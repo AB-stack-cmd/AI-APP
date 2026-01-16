@@ -8,6 +8,7 @@ import { eq } from "drizzle-orm";
 export async function POST(req: NextRequest) {
   const user = await currentUser();
 
+  // error message 
   if (!user || !user.primaryEmailAddress) {
     return NextResponse.json(
       { error: "Unauthorized" },
@@ -16,7 +17,8 @@ export async function POST(req: NextRequest) {
   }
 
   const email = user.primaryEmailAddress.emailAddress;
-
+  
+  // DB data 
   const users = await db
     .select()
     .from(usersTable)

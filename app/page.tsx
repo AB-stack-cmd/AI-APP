@@ -2,13 +2,22 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { UserButton } from "@clerk/nextjs";
-
+import { Header } from "./_shared/Header";
+import { Hero } from "./_shared/Hero";
 
 export default function Home() {
   return (
     <>
-      <h1>HEllo</h1> <Button onClick={() => alert("Clicked")}>Click me</Button>
-      <UserButton/>
+    
+     <div>
+         <Header/>
+         <Hero/>
+         <div className="absolute -top-40 -left-40 h-[500px] w-[500px]
+         bg-purple-400/20 blur-[120px]" ></div>
+
+
+      </div>
+     
     </>
   );
 }

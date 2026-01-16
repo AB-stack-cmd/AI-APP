@@ -1,9 +1,10 @@
 "use client"
-import React , {useEffect} from "react";
+import React , {useEffect , useState} from "react";
 import axios from "axios";
-import { currentUser } from "@clerk/nextjs/server";
+import { UserDetailContext } from "@/context/UserDetailContext";
 export function Provider({ children }: { children: React.ReactNode }) {
 
+      const[userData , setUserdata] = useState();
     useEffect(() => {
        createUserData();
     }, []);
@@ -13,7 +14,9 @@ export function Provider({ children }: { children: React.ReactNode }) {
             const result = await axios.post("/api/user", {});
             console.log("result", result.data);
 
-            console.log({currentUser})
+          
+
+            setUserdata(result.data);
 
         } catch (error: any) {
             console.log("API error:", error.response?.data);
@@ -22,7 +25,11 @@ export function Provider({ children }: { children: React.ReactNode }) {
 
 
     return (
-        <div>{children}</div>
+        
+         <><UserDetailContext.Provider value={{userData , setUserdata}}>
+
+          <div>{children}</div>
+          </UserDetailContext.Provider></>
     )
 }
    
