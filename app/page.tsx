@@ -14,7 +14,7 @@ export default function Home() {
          <Hero/>
          <div className="absolute -top-40 -left-40 h-[500px] w-[500px]
          bg-purple-400/20 blur-[120px]" ></div>
-
+         <div className="absolute bg-purple-400/20 h-[500px] w-[500px] -bottom-40 -right-30 blur-[120px]"></div>
 
       </div>
      
