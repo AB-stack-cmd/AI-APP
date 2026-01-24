@@ -3,7 +3,7 @@ import React , {useEffect , useState} from "react";
 import axios from "axios";
 import { UserDetailContext } from "@/context/UserDetailContext";
 export function Provider({ children }: { children: React.ReactNode }) {
-
+        // set user data
       const[userData , setUserdata] = useState();
     useEffect(() => {
        createUserData();
@@ -11,7 +11,7 @@ export function Provider({ children }: { children: React.ReactNode }) {
 
         const createUserData = async () => {
         try {
-            const result = await axios.post("/api/user", {});
+            const result = await axios.post("/api/user", {});// post is thw folder stucture
             console.log("result", result.data);
 
           
@@ -25,7 +25,7 @@ export function Provider({ children }: { children: React.ReactNode }) {
 
 
     return (
-        
+        // exporting data to different pages this user data
          <><UserDetailContext.Provider value={{userData , setUserdata}}>
 
           <div>{children}</div>

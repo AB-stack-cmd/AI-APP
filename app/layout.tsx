@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Home from "./page";
 import { Provider } from "./provider";
-import { currentUser } from "@clerk/nextjs/server";
+import { ThemeProvider } from "next-themes";
 import {
   ClerkProvider,
   SignInButton,
@@ -24,7 +24,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "UIUX mockup",
+  title: "OverFlow",
   description: "Generated UI/UX Designs",
 };
 
@@ -35,22 +35,16 @@ export default function RootLayout({
 }>) {
   return (
      <ClerkProvider>
-      <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable } antialiased`} >
-          <header className="flex justify-end items-center  gap-4">
-            <SignedOut>
-              <SignInButton />
-              <SignUpButton>
-                <button className="bg-[#6c47ff] text-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
-                  Sign Up
-                </button>
-              </SignUpButton>
-            </SignedOut>
-            <SignedIn>
-              {/* <UserButton /> */}
-            </SignedIn>
-          </header>
+      <html lang="en" suppressHydrationWarning>
+      
+        <body className={` ${geistSans.variable} ${geistMono.variable } antialiased`} >
+        <ThemeProvider
+        attribute="class"
+        defaultTheme="dark"
+        enableSystem={false}
+        disableTransitionOnChange>
          <Provider>{children}</Provider>
+         </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>

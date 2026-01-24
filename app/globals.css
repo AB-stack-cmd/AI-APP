@@ -14,22 +14,21 @@
 }
 
 .carousel {
-  max-width: 100%;
+  max-width: 50%;
   margin: 50px auto;
   width: 50%;
   display: flex;
   overflow-x: hidden;
-  gap: 1em;
+  gap: 2em;
   padding: 20px 0;
 }
 
 .group {
-
-  width: 40%;
+  width: 90%;
   display: flex;
   width: fit-content;
   animation: carouselMove 10s linear infinite;
-  /* padding-right: 2em; */
+  padding-right: 2em;
 }
 
 .group:nth-child(2) {
@@ -37,11 +36,11 @@
 }
 
 .card {
-  min-width: 100px;
+  min-width: 50px;
   text-align: center;
   align-items: center;
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   margin: 1em;
   border-radius: 10px;
   overflow: hidden;
@@ -50,6 +49,8 @@
   background-color: cornflowerblue;
   /* flex-shrink: 0; */
 }
+
+
 
 @theme inline {
   --color-background: var(--background);
@@ -92,16 +93,24 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
-  --animate-shiny-text: shiny-text 8s infinite;
-  @keyframes shiny-text {
-  0%, 90%, 100% {
-    background-position: calc(-100% - var(--shiny-width)) 0;
+  --animate-shine: shine var(--duration) infinite linear;
+
+  @keyframes shine {
+    0% {
+      background-position: 0% 0%;
     }
-  30%, 60% {
-    background-position: calc(100% + var(--shiny-width)) 0;
+
+    50% {
+      background-position: 100% 100%;
+    }
+
+    to {
+      background-position: 0% 0%;
     }
   }
 }
+
+
 
 :root {
   --radius: 0.625rem;

@@ -1,21 +1,19 @@
 "use client";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/components/ui/button";
 import { UserButton } from "@clerk/nextjs";
 import { Header } from "./_shared/Header";
 import { Hero } from "./_shared/Hero";
-
 export default function Home() {
   return (
     <>
     
      <div>
-         <Header/>
-         <Hero/>
-         <div className="absolute -top-40 -left-40 h-[500px] w-[500px]
-         bg-purple-400/20 blur-[120px]" ></div>
-         <div className="absolute bg-purple-400/20 h-[500px] w-[500px] -bottom-40 -right-30 blur-[120px]"></div>
-
+      <Header/>
+      <Hero/>
+         {/* <HomePage/> */}
+         {/* <Main/> */}
+         
       </div>
      
     </>
