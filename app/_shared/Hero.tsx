@@ -1,7 +1,8 @@
+"use client"
 import { Scroll_animation } from "./Scroll"
 import { ArrowUpIcon, ChevronDownIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { ChevronRightIcon } from "lucide-react"
+import { ChevronRightIcon,Menu } from "lucide-react"
 import {categoryData} from "./nameShared"
 import { ShineBorder } from "@/app/components/ui/shine-border"
 import { AnimatedShinyText } from "@/app/components/ui/animated-shiny-text"
@@ -23,16 +24,31 @@ import { Separator } from "@/app/components/ui/separator"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Cipher } from "crypto"
+import axios from "axios"
 
 export function Hero(){
-    
+
+     async function res(){
+        
+         const res =await axios.post("/api/content",{});
+         console.log(res)
+          router.push('/canvas')
+
+         
+    }
+
+
+
         const router = useRouter()
      const [ userinput , setUserInput] = useState<string>()
     return (
         <>
-        <button className="border rounded-2xl"><ArrowUpIcon size="20px"/></button>
-       
+        <div className="ml-4 mt-2">
+         <button className="border rounded   hover:bg-zinc-800"><Menu/></button>
+        </div>
         <div className="  p-2 text-2xl md:px-24 mt:20  items-center">
+           
+       
               <div className="z-10 flex h-10 w-full items-center justify-center  ">
                 
                 <div
@@ -75,7 +91,7 @@ export function Hero(){
                         </DropdownMenu>
                         <InputGroupText className="ml-auto">
                          <InputGroupButton variant="default" size="sm"
-                         className="bg-primary  " onClick={()=>router.push("/Canvas")}> Send </InputGroupButton></InputGroupText>
+                         className="bg-primary  " onClick={()=>res()}> Send </InputGroupButton></InputGroupText>
                         {/* <Separator orientation="vertical" className="!h-4" /> */}
 
                         {/* <div className=" border rounded-sm p-1 bg-blue-600 ">
